@@ -1,11 +1,29 @@
-import { User } from '../../interfaces/user';
+import { UserI } from '../../interfaces/user';
 import { actionTypesUser } from './actionTypes';
+import { AppDispatch } from '../store';
+import * as api from '../../services/user-api';
+import { UserLoginI } from '../../interfaces/userLogin';
 
-export const login = (user: User) => ({
-    type: actionTypesUser.login,
-    payload: user,
-});
+export const login = (userLogin: UserLoginI) => (dispatch: AppDispatch) => {
+    api.login(userLogin).then((resp) => {
+        dispatch({
+            type: actionTypesUser.login,
+            payload: resp,
+        });
+    });
+};
 
-export const logout = () => ({
-    type: actionTypesUser.logout,
-});
+export const logout = () => (dispatch: AppDispatch) => {
+    dispatch({
+        type: actionTypesUser.logout,
+    });
+};
+
+export const register = (user: UserI) => (dispatch: AppDispatch) => {
+    api.register(user).then((resp) => {
+        dispatch({
+            type: actionTypesUser.register,
+            payload: resp,
+        });
+    });
+};

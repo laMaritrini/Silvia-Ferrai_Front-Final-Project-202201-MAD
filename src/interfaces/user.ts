@@ -1,5 +1,5 @@
-export interface User {
+export interface UserI {
     username: string;
-    role: 'Sala' | 'Cocina';
+    role: 'Sala' | 'Cocina' | '';
     password: string;
 }

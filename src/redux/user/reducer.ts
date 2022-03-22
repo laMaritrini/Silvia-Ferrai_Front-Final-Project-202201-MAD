@@ -1,21 +1,30 @@
-import { actionTypesUser } from './actionTypes';
+/* eslint-disable default-param-last */
 import { AnyAction } from 'redux';
+import { actionTypesUser } from './actionTypes';
+
+interface InitialStateI {
+    token: string;
+    username: string;
+    id: string;
+}
 
 const initialState = {
     token: '',
-    userName: '',
+    username: '',
     id: '',
-    isLogged: false,
 };
 
-export function userReducer(state = initialState, action: AnyAction) {
+export function userReducer(
+    state: InitialStateI = initialState,
+    action: AnyAction
+) {
     switch (action.type) {
+        case actionTypesUser.register:
+            return { ...action.payload };
         case actionTypesUser.login:
-            state = { ...action.payload, isLogged: true };
-            return state;
+            return { ...action.payload, isLogged: true };
         case actionTypesUser.logout:
-            state = initialState;
-            return state;
+            return initialState;
         default:
             return state;
     }
