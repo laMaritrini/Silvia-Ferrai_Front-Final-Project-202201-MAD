@@ -21,23 +21,29 @@ function LoginForm() {
     };
 
     return (
-        <form>
+        <form className="form-container">
             <input
+                className="form-container__username"
                 type="text"
                 name="username"
-                placeholder="username"
+                placeholder="Username"
                 value={setLogin.username}
                 onChange={handleChange}
             />
 
             <input
+                className="form-container__password"
                 type="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
                 value={setLogin.password}
                 onChange={handleChange}
             />
-            <button type="submit" onClick={handleSubmit}>
+            <button
+                className="form-container__button"
+                type="submit"
+                onClick={handleSubmit}
+            >
                 Login
             </button>
         </form>

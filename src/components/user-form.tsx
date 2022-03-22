@@ -21,38 +21,52 @@ function UserForm() {
     };
 
     return (
-        <form>
+        <form className="form-container">
             <input
+                className="form-container__username"
                 type="text"
                 name="username"
                 placeholder="username"
                 value={user.username}
                 onChange={handleChange}
             />
-            Sala
+            <div className="form-container__block">
+                <span className="form-container__block form-container__block--sala">
+                    Sala
+                </span>
+                <input
+                    className="form-container__select"
+                    type="radio"
+                    name="role"
+                    placeholder="role"
+                    value="Sala"
+                    onChange={handleChange}
+                />
+                <span className="form-container__block form-container__block--cocina">
+                    Cocina
+                </span>
+                <input
+                    className="form-container__select"
+                    type="radio"
+                    name="role"
+                    placeholder="role"
+                    value="Cocina"
+                    onChange={handleChange}
+                />
+            </div>
             <input
-                type="radio"
-                name="role"
-                placeholder="role"
-                value="Sala"
-                onChange={handleChange}
-            />
-            Cocina
-            <input
-                type="radio"
-                name="role"
-                placeholder="role"
-                value="Cocina"
-                onChange={handleChange}
-            />
-            <input
+                className="form-container__password"
                 type="password"
                 name="password"
                 placeholder="password"
                 value={user.password}
                 onChange={handleChange}
             />
-            <button type="submit" onClick={handleSubmit}>
+            <button
+                className="form-container__button"
+                type="submit"
+                onClick={handleSubmit}
+            >
                 Register
             </button>
         </form>
