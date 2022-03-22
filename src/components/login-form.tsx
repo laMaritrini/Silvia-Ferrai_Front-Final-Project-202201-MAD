@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { UserLoginI } from '../interfaces/userLogin';
 import * as actionCreators from '../redux/user/actionCreators';
-import { UserI } from '../interfaces/user';
 
-function UserForm() {
-    const [user, setUser] = useState<UserI>({
+function LoginForm() {
+    const [setLogin, setNewLogin] = useState<UserLoginI>({
         username: '',
         password: '',
-        role: '',
     });
+
     const dispatch = useDispatch();
 
     const handleChange = (ev: any) => {
-        setUser({ ...user, [ev.target.name]: ev.target.value });
+        setNewLogin({ ...setLogin, [ev.target.name]: ev.target.value });
     };
 
     const handleSubmit = async (ev: any) => {
         ev.preventDefault();
-        dispatch(actionCreators.register(user));
+        dispatch(actionCreators.login(setLogin));
     };
 
     return (
@@ -26,36 +26,22 @@ function UserForm() {
                 type="text"
                 name="username"
                 placeholder="username"
-                value={user.username}
+                value={setLogin.username}
                 onChange={handleChange}
             />
-            Sala
-            <input
-                type="radio"
-                name="role"
-                placeholder="role"
-                value="Sala"
-                onChange={handleChange}
-            />
-            Cocina
-            <input
-                type="radio"
-                name="role"
-                placeholder="role"
-                value="Cocina"
-                onChange={handleChange}
-            />
+
             <input
                 type="password"
                 name="password"
                 placeholder="password"
-                value={user.password}
+                value={setLogin.password}
                 onChange={handleChange}
             />
             <button type="submit" onClick={handleSubmit}>
-                Register
+                Login
             </button>
         </form>
     );
 }
-export default UserForm;
+
+export default LoginForm;

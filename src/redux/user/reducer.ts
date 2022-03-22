@@ -22,7 +22,7 @@ export function userReducer(
         case actionTypesUser.register:
             return { ...action.payload };
         case actionTypesUser.login:
-            return { ...action.payload, isLogged: true };
+            return { ...action.payload };
         case actionTypesUser.logout:
             return initialState;
         default:
