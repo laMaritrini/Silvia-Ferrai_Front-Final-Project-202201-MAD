@@ -3,15 +3,6 @@ import { actionTypesTicket } from './actionTypes';
 import * as api from '../../services/ticket.api';
 import { TicketI } from '../../interfaces/ticket';
 
-export const loadTickets = () => (dispatch: AppDispatch) => {
-    api.getProducts().then((resp) => {
-        dispatch({
-            type: actionTypesTicket.loadProducts,
-            payload: resp.data,
-        });
-    });
-};
-
 export const createNewTicket =
     (ticket: TicketI, token: string) => (dispatch: AppDispatch) => {
         api.createTicket(ticket, token).then((resp) => {
@@ -55,7 +46,7 @@ export const removeProductIntoTicket =
 export const getAllTickets = (token: string) => (dispatch: AppDispatch) => {
     api.getAllTickets(token).then((resp) => {
         dispatch({
-            type: actionTypesTicket.getAllTickets,
+            type: actionTypesTicket.loadAllTickets,
             payload: resp.data,
         });
     });
