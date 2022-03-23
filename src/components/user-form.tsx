@@ -26,7 +26,7 @@ function UserForm() {
                 className="form-container__username"
                 type="text"
                 name="username"
-                placeholder="username"
+                placeholder="Username"
                 value={user.username}
                 onChange={handleChange}
             />
@@ -58,7 +58,7 @@ function UserForm() {
                 className="form-container__password"
                 type="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
                 value={user.password}
                 onChange={handleChange}
             />

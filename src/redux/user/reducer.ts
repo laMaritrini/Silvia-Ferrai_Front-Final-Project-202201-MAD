@@ -1,4 +1,3 @@
-/* eslint-disable default-param-last */
 import { AnyAction } from 'redux';
 import { actionTypesUser } from './actionTypes';
 

@@ -1,8 +1,14 @@
+.outer-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(254, 230, 169, 1);
+}
+
 .container {
     margin: 50px;
     padding: 100px;
     border-radius: 10vh;
-    background-color: rgb(223, 141, 35);
+    background-color: rgba(235, 120, 70, 1);
     &__login {
         font-size: 35px;
     }
@@ -12,6 +18,9 @@
 }
 
 .button-register {
+    background-color: rgb(252, 159, 19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: none;
     width: 150px;
     margin: 10px;
@@ -45,5 +54,6 @@
         border-radius: 10vh;
         font-size: 20px;
         font-weight: 700;
+        background-color: rgba(254, 245, 169, 1);
     }
 }

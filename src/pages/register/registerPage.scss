@@ -2,7 +2,7 @@
     margin: 50px;
     padding: 100px;
     border-radius: 10vh;
-    background-color: rgb(247, 135, 83);
+    background-color: rgb(252, 159, 19);
 
     &__register {
         font-size: 35px;
@@ -13,6 +13,9 @@
 }
 
 .button-login {
+    background-color: rgba(235, 120, 70, 1);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: none;
     width: 150px;
     margin: 10px;

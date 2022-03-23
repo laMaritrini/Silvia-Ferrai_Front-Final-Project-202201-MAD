@@ -8,8 +8,12 @@ function App() {
     return (
         <div className="App">
             <Routes>
+                {/* <Route path="/" element={<SalaPage />} /> */}
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                {/* <Route path="/ticket" element={<TicketPage />} /> */}
+                {/* <Route path="/closeTicket" element={<CloseTicketPage />} /> */}
+                {/* <Route path="/kitchen" element={<kitchenPage />} /> */}
             </Routes>
         </div>
     );
