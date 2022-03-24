@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { actionTypesUser } from './actionTypes';
 
-interface InitialStateI {
+export interface InitialStateI {
     token: string;
     username: string;
     id: string;
