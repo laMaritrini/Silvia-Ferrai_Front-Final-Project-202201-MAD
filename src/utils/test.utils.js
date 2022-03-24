@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
 // test-utils.js
 import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
