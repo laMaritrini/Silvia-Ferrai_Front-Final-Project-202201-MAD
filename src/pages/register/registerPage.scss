@@ -10,6 +10,10 @@
     &__option {
         font-size: 35px;
     }
+    &__question {
+        font-size: 20px;
+        font-weight: 400;
+    }
 }
 
 .button-login {
@@ -38,5 +42,9 @@
     }
     &__select {
         padding: 10px;
+        margin: 18px;
+    }
+    &__button {
+        margin-bottom: 70px;
     }
 }

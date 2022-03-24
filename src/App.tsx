@@ -5,6 +5,7 @@ import Header from './pages/header/header';
 import Home from './pages/home/home';
 import LoginPage from './pages/login/loginPage';
 import RegisterPage from './pages/register/registerPage';
+import TicketPage from './pages/ticket/ticketPage';
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    {/* <Route path="/ticket" element={<TicketPage />} /> */}
+                    <Route path="/ticket/:id" element={<TicketPage />} />
                     {/* <Route path="/closeTicket" element={<CloseTicketPage />} /> */}
                     {/* <Route path="/kitchen" element={<kitchenPage />} /> */}
                 </Routes>

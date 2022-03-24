@@ -9,6 +9,7 @@ function RegisterPage() {
             <div className="container-reg">
                 <h2 className="container-reg__register">REGÍSTRATE</h2>
                 <UserForm />
+                <p className="container-reg__question">¿Ya estás registrado?</p>
                 <Link to="/login">
                     <button className="button-login" type="button">
                         Login

@@ -6,7 +6,6 @@ import { TicketI } from '../../interfaces/ticket';
 export const createNewTicket =
     (ticket: TicketI, token: string) => (dispatch: AppDispatch) => {
         api.createTicket(ticket, token).then((resp) => {
-            console.log('Ticket', resp);
             dispatch({
                 type: actionTypesTicket.createTicket,
                 payload: resp.data,
