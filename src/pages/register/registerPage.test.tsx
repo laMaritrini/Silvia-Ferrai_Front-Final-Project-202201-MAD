@@ -1,6 +1,6 @@
 import React from 'react';
-import { screen, render } from '../../utils/test.utils';
 import { MemoryRouter } from 'react-router-dom';
+import { screen, render } from '../../utils/test.utils.js';
 import RegisterPage from './registerPage';
 
 describe('Given the login page component', () => {
@@ -10,6 +10,6 @@ describe('Given the login page component', () => {
                 <RegisterPage />
             </MemoryRouter>
         );
-        expect(screen.getByText(/REGISTER/)).toBeInTheDocument();
+        expect(screen.getByText(/Sala/)).toBeInTheDocument();
     });
 });

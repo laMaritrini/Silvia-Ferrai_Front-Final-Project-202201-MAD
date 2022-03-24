@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { UserLoginI } from '../interfaces/userLogin';
 import * as actionCreators from '../redux/user/actionCreators';
@@ -10,6 +11,7 @@ function LoginForm() {
     });
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChange = (ev: any) => {
         setNewLogin({ ...setLogin, [ev.target.name]: ev.target.value });
@@ -18,6 +20,7 @@ function LoginForm() {
     const handleSubmit = async (ev: any) => {
         ev.preventDefault();
         dispatch(actionCreators.login(setLogin));
+        navigate('/');
     };
 
     return (
@@ -44,7 +47,7 @@ function LoginForm() {
                 type="submit"
                 onClick={handleSubmit}
             >
-                Login
+                LOGIN
             </button>
         </form>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Header from './pages/header/header';
+import Home from './pages/home/home';
 import LoginPage from './pages/login/loginPage';
 import RegisterPage from './pages/register/registerPage';
 
@@ -11,7 +12,7 @@ function App() {
             <Header />
             <main>
                 <Routes>
-                    {/* <Route path="/" element={<SalaPage />} /> */}
+                    <Route path="/" element={<Home />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     {/* <Route path="/ticket" element={<TicketPage />} /> */}
