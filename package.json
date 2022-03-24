@@ -32,7 +32,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --coverage --watchAll",
         "eject": "react-scripts eject"
     },
     "browserslist": {
@@ -57,5 +57,14 @@
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.29.4",
         "eslint-plugin-react-hooks": "^4.3.0"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.{ts,tsx}",
+            "!src/index.tsx",
+            "!src/utils/test-utils.js",
+            "!src/serviceWorker.ts",
+            "!src/reportWebVitals.ts"
+        ]
     }
 }
