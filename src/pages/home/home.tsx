@@ -17,10 +17,6 @@ import * as api from '../../services/ticket.api';
 function Home() {
     const user = useSelector((state: RootState) => state.user);
     const ticket = useSelector((state: RootState) => state.ticket);
-    console.log(ticket);
-    // const [newTicket, setNewTicket] = useState<TicketI>({
-    //     items: [],
-    // });
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
