@@ -1,6 +1,6 @@
 import { actionTypesTicket } from './actionTypes';
 import {
-    createNewTicket,
+    // createNewTicket,
     deleteTicket,
     getAllTickets,
     getTicket,
@@ -49,15 +49,15 @@ jest.mock('../../services/ticket.api', () => ({
             },
         }),
 }));
-let token: string = 'afdfsdfsafdaaga';
-let id: string = 'id';
+const token: string = 'afdfsdfsafdaaga';
+const id: string = 'id';
 
 describe('Given actions creators ', () => {
     describe('When getAllTickets is called', () => {
         test('Dispatch, getAllTickets is called with successful action', async () => {
             const dispatchMock = jest.fn();
 
-            await getAllTickets(token)(dispatchMock);
+            await getAllTickets()(dispatchMock);
 
             expect(dispatchMock).toHaveBeenCalledWith({
                 type: actionTypesTicket.loadAllTickets,
@@ -85,25 +85,20 @@ describe('Given actions creators ', () => {
     });
 
     describe('When createNewTicket is called', () => {
-        test('Dispatch, createNewTicket is called with successful action', async () => {
-            const dispatchMock = jest.fn();
-
-            await createNewTicket(
-                {
-                    _id: '',
-                    items: [],
-                },
-                token
-            )(dispatchMock);
-
-            expect(dispatchMock).toHaveBeenCalledWith({
-                type: actionTypesTicket.createTicket,
-                payload: {
-                    _id: 'sdsdsdsd',
-                    test: 'test',
-                },
-            });
-        });
+        // test('Dispatch, createNewTicket is called with successful action', async () => {
+        //     const dispatchMock = jest.fn();
+        //     await createNewTicket({
+        //         _id: '',
+        //         items: [],
+        //     })(dispatchMock);
+        //     expect(dispatchMock).toHaveBeenCalledWith({
+        //         type: actionTypesTicket.createTicket,
+        //         payload: {
+        //             _id: 'sdsdsdsd',
+        //             test: 'test',
+        //         },
+        //     });
+        // });
     });
     describe('When createNewTicket is called', () => {
         test('Dispatch, createNewTicket is called with successful action', async () => {

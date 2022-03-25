@@ -43,10 +43,8 @@ export function deleteProductTicket(
     });
 }
 
-export function getAllTickets(token: string): Promise<AxiosResponse> {
-    return axios.get(TICKET_API, {
-        headers: { authorization: `Bearer ${token}` },
-    });
+export function getAllTickets(): Promise<AxiosResponse> {
+    return axios.get(TICKET_API);
 }
 
 export function getTicket(id: string, token: string): Promise<AxiosResponse> {

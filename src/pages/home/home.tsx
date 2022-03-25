@@ -1,15 +1,21 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-underscore-dangle */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'; // , { useState }
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { TicketI } from '../../interfaces/ticket';
 import { createNewTicket } from '../../redux/ticket/actionCreator';
 import { RootState } from '../../redux/store';
 
+import * as api from '../../services/ticket.api';
+import { getAllTickets } from '../../services/ticket.api';
+
 function Home() {
     const user = useSelector((state: RootState) => state.user);
-    // const ticket = useSelector((state: RootState) => state.ticket);
-
+    const ticket = useSelector((state: RootState) => state.ticket);
     const [newTicket, setNewTicket] = useState<TicketI>({
         items: [],
     });
@@ -17,28 +23,45 @@ function Home() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const createTicket = (ticket: TicketI) => {
-        dispatch(createNewTicket(ticket, user.token));
+    const createTicket = async () => {
+        const { data: createdTicket } = await api.createTicket(
+            { items: [] },
+            user.token
+        );
+
+        dispatch(createNewTicket(createdTicket));
+
+        navigate(`/ticket/${createdTicket._id}`);
     };
 
-    function handleClick() {
-        createTicket(newTicket);
+    // const loadTickets = () => {
+    //     dispatch(getAllTickets);
+    // };
 
-        setNewTicket(newTicket);
-
-        // console.log(newTicket);
-        navigate(`/ticket/${newTicket._id}`);
-    }
+    // useEffect(() => {
+    //     dispatch(getAllTickets());
+    //     setNewTicket(newTicket);
+    // }, []);
 
     return (
-        <div
-            role="button"
-            tabIndex={0}
-            onClick={handleClick}
-            onKeyPress={handleClick}
-        >
-            +MESA
-        </div>
+        <>
+            <div>
+                <FontAwesomeIcon
+                    role="button"
+                    tabIndex={0}
+                    onClick={createTicket}
+                    onKeyPress={createTicket}
+                    icon={faCirclePlus}
+                />
+
+                <p> mesa</p>
+            </div>
+            {/* <ul>
+                {newTicket.items.map((item: any) => (
+                    <li>{item}</li>
+                ))}
+            </ul> */}
+        </>
     );
 }
 

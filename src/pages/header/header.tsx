@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.scss';
@@ -36,7 +36,7 @@ function Header() {
             <Link to="/login" className="link-login">
                 LOGIN
             </Link>
-
+            <FontAwesomeIcon className="icon-settings" icon={faClipboardList} />
             <FontAwesomeIcon className="icon-settings" icon={faGear} />
         </div>
     );

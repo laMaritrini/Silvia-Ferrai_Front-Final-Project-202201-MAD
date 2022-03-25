@@ -43,7 +43,7 @@ describe('Given the service api', () => {
     });
 
     test('When getAllTickets is running, axios.get should be called', () => {
-        api.getAllTickets(token);
+        api.getAllTickets();
         expect(axios.get).toHaveBeenCalled();
     });
 
