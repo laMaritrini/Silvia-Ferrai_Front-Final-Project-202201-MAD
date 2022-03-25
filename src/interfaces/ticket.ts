@@ -12,6 +12,6 @@ export interface ItemI {
 }
 
 export interface TicketI {
-    _id?: string;
+    _id?: string | undefined;
     items: ItemI[];
 }

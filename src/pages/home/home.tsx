@@ -1,24 +1,26 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react'; // , { useState }
+import React, { useEffect } from 'react'; // , { useState }
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { TicketI } from '../../interfaces/ticket';
-import { createNewTicket } from '../../redux/ticket/actionCreator';
+import {
+    createNewTicket,
+    getAllTickets,
+} from '../../redux/ticket/actionCreator';
 import { RootState } from '../../redux/store';
 
 import * as api from '../../services/ticket.api';
-import { getAllTickets } from '../../services/ticket.api';
 
 function Home() {
     const user = useSelector((state: RootState) => state.user);
     const ticket = useSelector((state: RootState) => state.ticket);
-    const [newTicket, setNewTicket] = useState<TicketI>({
-        items: [],
-    });
+    console.log(ticket);
+    // const [newTicket, setNewTicket] = useState<TicketI>({
+    //     items: [],
+    // });
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,20 +30,14 @@ function Home() {
             { items: [] },
             user.token
         );
-
         dispatch(createNewTicket(createdTicket));
 
         navigate(`/ticket/${createdTicket._id}`);
     };
 
-    // const loadTickets = () => {
-    //     dispatch(getAllTickets);
-    // };
-
-    // useEffect(() => {
-    //     dispatch(getAllTickets());
-    //     setNewTicket(newTicket);
-    // }, []);
+    useEffect(() => {
+        dispatch(getAllTickets());
+    }, [dispatch]);
 
     return (
         <>
@@ -56,11 +52,26 @@ function Home() {
 
                 <p> mesa</p>
             </div>
-            {/* <ul>
-                {newTicket.items.map((item: any) => (
-                    <li>{item}</li>
-                ))}
-            </ul> */}
+            <ul>
+                {ticket.length &&
+                    ticket.map((item: any, index: number) => (
+                        <>
+                            <Link to={`/ticket/${item._id}`}>
+                                <li key={item._id}> Mesa {index + 1}</li>
+                            </Link>
+                            {/* <p>
+                            {item.items.map((el: any) => (
+                                <div key={el.id}>
+                                    <p>{el.id}</p>
+                                    <p>{el.type}</p>
+                                    <p>{el.item}</p>
+                                    <p>{el.price}</p>
+                                </div>
+                            ))}
+                        </p> */}
+                        </>
+                    ))}
+            </ul>
         </>
     );
 }

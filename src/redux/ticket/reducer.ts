@@ -17,6 +17,8 @@ export function ticketReducer(state: TicketI[] = [], action: AnyAction) {
             return state.filter((item) => item._id !== action.payload.id);
         case actionTypesTicket.loadAllTickets:
             return [...action.payload];
+        case actionTypesTicket.getTicket:
+            return action.payload;
         default:
             return state;
     }

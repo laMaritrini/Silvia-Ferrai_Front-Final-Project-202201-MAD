@@ -47,7 +47,10 @@ export function getAllTickets(): Promise<AxiosResponse> {
     return axios.get(TICKET_API);
 }
 
-export function getTicket(id: string, token: string): Promise<AxiosResponse> {
+export function getTicket(
+    id: string | undefined,
+    token: string
+): Promise<AxiosResponse> {
     return axios.get(TICKET_API + id, {
         headers: { authorization: `Bearer ${token}` },
     });

@@ -50,7 +50,7 @@ export const getAllTickets = () => (dispatch: AppDispatch) => {
 };
 
 export const getTicket =
-    (id: string, token: string) => (dispatch: AppDispatch) => {
+    (id: string | undefined, token: string) => (dispatch: AppDispatch) => {
         api.getTicket(id, token).then((resp) => {
             dispatch({
                 type: actionTypesTicket.getTicket,
