@@ -11,6 +11,7 @@ import {
     getAllTickets,
 } from '../../redux/ticket/actionCreator';
 import { RootState } from '../../redux/store';
+import './home.scss';
 
 import * as api from '../../services/ticket.api';
 
@@ -36,39 +37,41 @@ function Home() {
     }, [dispatch]);
 
     return (
-        <>
-            <div>
-                <FontAwesomeIcon
-                    role="button"
-                    tabIndex={0}
-                    onClick={createTicket}
-                    onKeyPress={createTicket}
-                    icon={faCirclePlus}
-                />
+        <div className="home">
+            <div className="home-table">
+                <div className="home__add">
+                    <FontAwesomeIcon
+                        className="home__icon"
+                        role="button"
+                        tabIndex={0}
+                        onClick={createTicket}
+                        onKeyPress={createTicket}
+                        icon={faCirclePlus}
+                    />
 
-                <p> mesa</p>
+                    <p className="home__add home__add--table"> NUEVA MESA</p>
+                </div>
             </div>
-            <ul>
+            <ul className="home__list">
                 {ticket.length &&
                     ticket.map((item: any, index: number) => (
-                        <>
-                            <Link to={`/ticket/${item._id}`}>
-                                <li key={item._id}> Mesa {index + 1}</li>
-                            </Link>
-                            {/* <p>
-                            {item.items.map((el: any) => (
-                                <div key={el.id}>
-                                    <p>{el.id}</p>
-                                    <p>{el.type}</p>
-                                    <p>{el.item}</p>
-                                    <p>{el.price}</p>
-                                </div>
-                            ))}
-                        </p> */}
-                        </>
+                        <Link
+                            className="home__list home__list--block"
+                            to={`/ticket/${item._id}`}
+                        >
+                            <img
+                                className="home__list home__list--table-pic"
+                                src="./assets/413141-PDTI1J-153.png"
+                                alt="table"
+                                key={item._id}
+                            />
+                            <li className="home__list home__list--table">
+                                MESA {index + 1}
+                            </li>
+                        </Link>
                     ))}
             </ul>
-        </>
+        </div>
     );
 }
 

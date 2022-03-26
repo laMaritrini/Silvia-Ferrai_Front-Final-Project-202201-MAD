@@ -2,6 +2,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Products from '../../components/products';
 import { RootState } from '../../redux/store';
 import { getTicket } from '../../redux/ticket/actionCreator';
@@ -19,37 +21,74 @@ function TicketPage() {
     }, [dispatch]);
 
     return (
-        <div>
-            <h3 className="ticket-title">Ticket Mesa N.</h3>
-            <div className="ticket-subtitle">
-                <p>Uds:</p>
-                <p>Article:</p>
-                <p>Imp.:</p>
-                <p>Tot:</p>
+        <div className="container-grid">
+            <div className="block1">
+                <h3 className="ticket-title">Ticket Mesa N.</h3>
+
+                <div className="bloque-ticket">
+                    <div className="ticket-subtitle">
+                        <p className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                            Uds:
+                        </p>
+                        <p className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                            Article:
+                        </p>
+                        <p className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                            Imp:
+                        </p>
+                        <p className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                            Tot:
+                        </p>
+                    </div>
+                    <ul className="list">
+                        {ticketInfo &&
+                            ticketInfo.items?.length &&
+                            ticketInfo.items.map((el: any) => (
+                                <div className="ticket-subtitle__elements">
+                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                        <FontAwesomeIcon
+                                            icon={faMinus}
+                                            className="icon"
+                                        />
+                                        {el.uds}
+                                        <FontAwesomeIcon
+                                            icon={faPlus}
+                                            className="icon"
+                                        />
+                                    </li>
+                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                        {el.article.item}
+                                    </li>
+                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                        {el.article.price.toFixed(2)}
+                                    </li>
+                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                        {(el.article.price * el.uds).toFixed(2)}
+                                    </li>
+                                </div>
+                            ))}
+                    </ul>
+                </div>
+                <div className="tot">
+                    <div>Tot. art</div>
+                    <div>Tot. </div>
+                </div>
             </div>
-            <ul>
-                {ticketInfo &&
-                    ticketInfo.items?.length &&
-                    ticketInfo.items.map((el: any) => (
-                        <div className="ticket-subtitle__elements">
-                            <li>{el.uds}</li>
-                            <li>{el.article.item}</li>
-                            <li>{el.article.price}</li>
-                            <li>{el.article.price * el.uds}</li>
-                        </div>
-                    ))}
-            </ul>
-            <div className="tot">
-                <div>Tot. art</div>
-                <div>Tot. </div>
+            <div className="block2">
+                <Products />
             </div>
-            <Products />
-            <Link to="/">
-                <div>Sala</div>
-            </Link>
-            <div>Cerrar Ticket</div>
-            <div>Invitacíon</div>
-            <div />
+            <div className="block3">
+                <Link className="link" to="/">
+                    <div className="block3__list block3__list--sala">Sala</div>
+                </Link>
+                <div className="block3__list block3__list--close">
+                    Cerrar Ticket
+                </div>
+                <div className="block3__list block3__list--invite">
+                    Invitacíon
+                </div>
+                <div />
+            </div>
         </div>
     );
 }

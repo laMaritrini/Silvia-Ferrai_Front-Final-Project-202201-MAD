@@ -1,0 +1,127 @@
+.ticket-title {
+    display: flex;
+    padding: 30px;
+    background-color: rgba(239, 184, 102, 1);
+}
+.ticket-subtitle {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 45vw;
+    background-color: rgba(239, 184, 102, 1);
+    &__elements {
+        border-right: 1px dotted black;
+        display: flex;
+        justify-content: center;
+        width: 45vw;
+        align-items: center;
+        font-weight: bold;
+        &__items {
+            width: 35vw;
+            padding-right: 10px;
+        }
+    }
+}
+.types {
+    display: flex;
+    padding-top: 10px;
+    margin: 1px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-bottom: 2px dotted rgb(80, 78, 78);
+    padding-bottom: 10px;
+    &__item {
+        display: flex;
+        margin: 1px;
+        width: 24.5%;
+        height: 19vh;
+        padding: 30px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+    &__name {
+        color: white;
+        font-weight: 900;
+    }
+}
+.tot {
+    display: flex;
+    justify-content: space-between;
+    width: 45vw;
+    height: 19.5vw;
+    padding: 20px 40px;
+    background-color: rgba(239, 184, 102, 1);
+    padding-bottom: 50px;
+    font-weight: bold;
+}
+.container-grid {
+    display: flex;
+    height: 100vh;
+}
+.block1 {
+    width: 45%;
+}
+.block2 {
+    background-color: rgb(29, 28, 28);
+    width: 45%;
+    height: 118vh;
+}
+.block3 {
+    background-color: rgb(29, 28, 28);
+    border: 1px solid rgb(19, 18, 18);
+    width: 10%;
+    height: 118vh;
+    display: flex;
+    flex-direction: column;
+    &__list {
+        border-end-start-radius: 10px;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+        font-size: 20px;
+        &--sala {
+            background-color: rgb(218, 135, 11);
+        }
+        &--close {
+            background-color: rgba(250, 184, 84, 1);
+            border-top-left-radius: 10px;
+        }
+        &--invite {
+            background-color: rgba(254, 245, 169, 1);
+            border-top-left-radius: 10px;
+        }
+    }
+}
+.link {
+    text-decoration: none;
+}
+.bloque-ticket {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}
+.list {
+    font-size: 1rem;
+    padding-bottom: 90%;
+}
+.icon {
+    padding: 10px;
+}
+.image {
+    margin: 1px;
+    width: 11vw;
+    height: 11vw;
+    border-radius: 50%;
+}
+.products {
+    display: flex;
+}
+.right-block {
+    width: 10vw;
+    height: 10vh;
+    border-end-start-radius: 10px;
+}
