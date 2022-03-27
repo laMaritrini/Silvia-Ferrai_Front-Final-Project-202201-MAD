@@ -4,6 +4,7 @@
     background-color: rgba(239, 184, 102, 1);
 }
 .ticket-subtitle {
+    padding: 10px;
     font-size: 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -41,16 +42,21 @@
         justify-content: center;
     }
     &__name {
+        padding: 4px;
         color: white;
         font-weight: 900;
+        text-decoration: none;
+        list-style: none;
+        font-size: 1.5rem;
+        letter-spacing: 1.5px;
     }
 }
 .tot {
     display: flex;
     justify-content: space-between;
     width: 45vw;
-    height: 19.5vw;
-    padding: 20px 40px;
+
+    padding: 27px 50px;
     background-color: rgba(239, 184, 102, 1);
     padding-bottom: 50px;
     font-weight: bold;
@@ -61,17 +67,18 @@
 }
 .block1 {
     width: 45%;
+    height: 100vh;
 }
 .block2 {
     background-color: rgb(29, 28, 28);
     width: 45%;
-    height: 118vh;
+    height: 100vh;
 }
 .block3 {
     background-color: rgb(29, 28, 28);
     border: 1px solid rgb(19, 18, 18);
     width: 10%;
-    height: 118vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     &__list {
@@ -105,8 +112,8 @@
     padding-right: 20px;
 }
 .list {
+    height: 75vh;
     font-size: 1rem;
-    padding-bottom: 90%;
 }
 .icon {
     padding: 10px;
@@ -118,7 +125,21 @@
     border-radius: 50%;
 }
 .products {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(247, 185, 70);
+        border: 3px solid brown;
+        box-shadow: inset 0 0 10px brown;
+        font-size: 1.5rem;
+        margin: 1px;
+        width: 11vw;
+        height: 11vw;
+        border-radius: 50%;
+    }
 }
 .right-block {
     width: 10vw;

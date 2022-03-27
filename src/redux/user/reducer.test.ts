@@ -5,6 +5,7 @@ const initialState: InitialStateI = {
     token: '',
     username: '',
     id: '',
+    isLogged: false,
 };
 
 describe('Given the userReducer', () => {
@@ -20,10 +21,20 @@ describe('Given the userReducer', () => {
     test('userReducer', () => {
         const newState = userReducer(initialState, {
             type: actionTypesUser.login,
-            payload: { token: '123', username: '123', id: '123' },
+            payload: {
+                token: '123',
+                username: '123',
+                id: '123',
+                isLogged: false,
+            },
         });
 
-        expect(newState).toEqual({ token: '123', username: '123', id: '123' });
+        expect(newState).toEqual({
+            token: '123',
+            username: '123',
+            id: '123',
+            isLogged: true,
+        });
     });
 
     test('userReducer', () => {

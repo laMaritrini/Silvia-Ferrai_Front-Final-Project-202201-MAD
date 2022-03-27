@@ -1,24 +1,24 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable no-shadow */
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadProducts } from '../redux/products/actionCreators';
-// import { RootState } from '../redux/store';
-// import { ArticleI } from '../interfaces/ticket';
+import { RootState } from '../redux/store';
 
 function Products() {
-    // const product = useSelector((state: RootState) => state.product);
+    const product = useSelector((state: RootState) => state.product);
+    const [itemProduct, setItemProduct] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadProducts());
     }, [dispatch]);
-    // console.log(product);
 
-    // function pizza(product: ArticleI[]) {
-    //     if (product.type === 'pizza') {
-    //         product.map((item: { item: any }) => <div>{item.item}</div>);
-    //     }
-    // }
+    function filterProduct(category: any) {
+        const filteredItem = product.filter((el: any) => el.type === category);
+
+        setItemProduct(filteredItem as any);
+    }
 
     return (
         <>
@@ -26,36 +26,64 @@ function Products() {
                 <div>
                     <img
                         className="image"
-                        src="https://comodibujar.club/wp-content/uploads/2020/09/kawaii-pizza.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/kawaii-pizza.jpg?alt=media&token=27fcecf4-e97c-42c4-af85-e10674470f13"
                         alt="pizza"
-                        // role="button"
-                        // tabIndex={0}
-                        // onKeyPress={pizza}
-                        // onClick={pizza}
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('pizza');
+                        }}
+                        onClick={() => {
+                            filterProduct('pizza');
+                        }}
                     />
                     <p className="types__name">PIZZA</p>
                 </div>
                 <div>
                     <img
                         className="image"
-                        src="https://thumbs.dreamstime.com/z/ilustraci%C3%B3n-de-dibujos-animados-la-ensalada-c%C3%A9sar-dibujo-vectorial-linda-con-manos-simplificadas-elevadas-aislado-en-fondo-198051090.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/emsalada2.jpg?alt=media&token=808356f5-7d61-4e80-8a17-94dc03b3cde7"
                         alt="salad"
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('ensalada');
+                        }}
+                        onClick={() => {
+                            filterProduct('ensalada');
+                        }}
                     />
                     <p className="types__name">ENSALADA</p>
                 </div>
                 <div>
                     <img
                         className="image"
-                        src="https://st3.depositphotos.com/5261163/35893/v/450/depositphotos_358930662-stock-illustration-funny-cake-isolated-cartoon-character.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/postre.jpg?alt=media&token=ce32a835-a104-4340-a7fa-597dd2aad005"
                         alt="postre"
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('postre');
+                        }}
+                        onClick={() => {
+                            filterProduct('postre');
+                        }}
                     />
                     <p className="types__name">POSTRE</p>
                 </div>
                 <div>
                     <img
                         className="image"
-                        src="https://i.pinimg.com/564x/ac/0d/67/ac0d67cdb9c4ba03f5f2f64984045ff5.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/caffe.jpg?alt=media&token=533b5251-ef2c-4bc9-ad28-05bdf73f44f3"
                         alt="café"
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('café');
+                        }}
+                        onClick={() => {
+                            filterProduct('café');
+                        }}
                     />
 
                     <div className="types__name"> CAFÉ</div>
@@ -63,39 +91,64 @@ function Products() {
                 <div>
                     <img
                         className="image"
-                        src="https://png.pngtree.com/png-vector/20191122/ourlarge/pngtree-emoji-of-the-smiling-soda-bottle-vector-or-color-illustration-png-image_2017017.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/refresco.jpg?alt=media&token=e5f9052b-151e-483f-8d7d-b30dd8e30cfa"
                         alt="refresco"
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('refresco');
+                        }}
+                        onClick={() => {
+                            filterProduct('refresco');
+                        }}
                     />
                     <div className="types__name">REFRESCO</div>
                 </div>
                 <div>
                     <img
                         className="image"
-                        src="https://img2.freepng.es/20191008/xvu/transparent-bottle-wine-bottle-cartoon-alcohol-dessert-wine-5da61bed5a2ee4.0625967515711672133694.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/vino-bottle.jpg?alt=media&token=200fa322-c2af-4d8b-af12-a10c39f6994f"
                         alt="vino"
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('vino');
+                        }}
+                        onClick={() => {
+                            filterProduct('vino');
+                        }}
                     />
                     <div className="types__name">VINO</div>
                 </div>
                 <div>
                     <img
                         className="image"
-                        src="https://thumbs.dreamstime.com/z/personaje-de-dibujos-animados-feliz-la-cerveza-113397674.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/ecco-cfc75.appspot.com/o/cerveza-bottle.jpg?alt=media&token=93e3be7e-f566-4030-ba8b-3f1013638386"
                         alt="cerveza"
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={() => {
+                            filterProduct('cerveza');
+                        }}
+                        onClick={() => {
+                            filterProduct('cerveza');
+                        }}
                     />
                     <div className="types__name">CERVEZA</div>
                 </div>
             </div>
 
-            <div className="products">
-                <div>
-                    <img
-                        className="image"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROeNrYNEGx8S1EsFI-fQewyByaeiwXBXK9-Q&usqp=CAU"
-                        alt="cafe"
-                    />
-                    <div className="types__name">café</div>
-                </div>
-            </div>
+            <ul className="products">
+                {itemProduct.length &&
+                    itemProduct.map((el: any) => (
+                        <div>
+                            <li key={el.id} className="products__item">
+                                {el.item}
+                            </li>
+                            {/* <li>{el.image}</li> */}
+                        </div>
+                    ))}
+            </ul>
         </>
     );
 }

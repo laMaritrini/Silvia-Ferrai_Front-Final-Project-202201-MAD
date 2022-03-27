@@ -1,6 +1,6 @@
 import { actionTypesTicket } from './actionTypes';
 import {
-    // createNewTicket,
+    createNewTicket,
     deleteTicket,
     getAllTickets,
     getTicket,
@@ -10,13 +10,6 @@ import {
 
 jest.mock('../../services/ticket.api', () => ({
     getAllTickets: () =>
-        Promise.resolve({
-            data: {
-                _id: 'sdsdsdsd',
-                test: 'test',
-            },
-        }),
-    createTicket: () =>
         Promise.resolve({
             data: {
                 _id: 'sdsdsdsd',
@@ -85,20 +78,20 @@ describe('Given actions creators ', () => {
     });
 
     describe('When createNewTicket is called', () => {
-        // test('Dispatch, createNewTicket is called with successful action', async () => {
-        //     const dispatchMock = jest.fn();
-        //     await createNewTicket({
-        //         _id: '',
-        //         items: [],
-        //     })(dispatchMock);
-        //     expect(dispatchMock).toHaveBeenCalledWith({
-        //         type: actionTypesTicket.createTicket,
-        //         payload: {
-        //             _id: 'sdsdsdsd',
-        //             test: 'test',
-        //         },
-        //     });
-        // });
+        test('Dispatch, createNewTicket is called with successful action', async () => {
+            const dispatchMock = jest.fn();
+            await createNewTicket({
+                _id: '',
+                items: [],
+            })(dispatchMock);
+            expect(dispatchMock).toHaveBeenCalledWith({
+                type: actionTypesTicket.createTicket,
+                payload: {
+                    _id: '',
+                    items: [],
+                },
+            });
+        });
     });
     describe('When createNewTicket is called', () => {
         test('Dispatch, createNewTicket is called with successful action', async () => {

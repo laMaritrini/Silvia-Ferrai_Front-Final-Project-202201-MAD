@@ -2,7 +2,7 @@ import { TicketI } from '../../interfaces/ticket';
 import { actionTypesTicket } from './actionTypes';
 import { ticketReducer } from './reducer';
 
-let initialState: TicketI[] = [];
+const initialState: TicketI[] = [];
 
 describe('Given the userReducer', () => {
     test('userReducer create Ticket', () => {
@@ -45,6 +45,16 @@ describe('Given the userReducer', () => {
             { id: 'qwerty', items: [] },
         ]);
     });
+
+    test('userReducer load Tickets', () => {
+        const newState = ticketReducer(initialState, {
+            type: actionTypesTicket.getTicket,
+            payload: [{ id: 'qwerty', items: [] }],
+        });
+
+        expect(newState).toEqual([{ id: 'qwerty', items: [] }]);
+    });
+
     test('userReducer update', () => {
         const newState = ticketReducer(initialState, {
             type: actionTypesTicket.updateTicket,

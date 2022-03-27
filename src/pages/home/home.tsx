@@ -11,6 +11,7 @@ import {
     getAllTickets,
 } from '../../redux/ticket/actionCreator';
 import { RootState } from '../../redux/store';
+import Popup from '../../components/popUp';
 import './home.scss';
 
 import * as api from '../../services/ticket.api';
@@ -56,11 +57,11 @@ function Home() {
                 {ticket.length &&
                     ticket.map((item: any, index: number) => (
                         <Link
-                            className="home__list home__list--block"
+                            className="home__list--block"
                             to={`/ticket/${item._id}`}
                         >
                             <img
-                                className="home__list home__list--table-pic"
+                                className="home__list--table-pic"
                                 src="./assets/413141-PDTI1J-153.png"
                                 alt="table"
                                 key={item._id}
