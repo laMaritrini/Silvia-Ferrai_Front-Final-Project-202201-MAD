@@ -17,8 +17,8 @@ function TicketPage() {
     const ta: number = useSelector((state: RootState) =>
         state.ticket.findIndex((item: TicketI) => item._id === id)
     );
-    console.log('ID', id);
-    console.log(ticketInfo);
+    // console.log('ID', id);
+    // console.log(ticketInfo);
 
     const [actualTicket, setActualTicket] = useState<TicketI>();
 
@@ -96,7 +96,7 @@ function TicketPage() {
                 <Link className="link" to="/">
                     <div className="block3__list block3__list--sala">Sala</div>
                 </Link>
-                <Link to="/closeTicket">
+                <Link to={`/closeTicket/${id}`}>
                     <div className="block3__list block3__list--close">
                         Cerrar Ticket
                     </div>

@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { deleteTicket } from '../../redux/ticket/actionCreator';
-// import { RootState } from '../../redux/store';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTicket } from '../../redux/ticket/actionCreator';
+import { RootState } from '../../redux/store';
 import './closeTicket.scss';
 
-// const dispatch = useDispatch();
-
 function CloseTicketPage() {
-    // const user = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const user = useSelector((state: RootState) => state.user);
 
-    // const deleteOneTicket = (id: string) => {
-    //     dispatch(deleteTicket(id, user.token));
-    // };
+    const deleteOneTicket = () => {
+        dispatch(deleteTicket(id, user.token));
+    };
 
     return (
         // <div>
@@ -22,6 +22,7 @@ function CloseTicketPage() {
         //     <input type="number" name="card" value={} onChange={} />
         //
         // </div>
+
         <div className="closeTicket">
             <div className="close-container">
                 <div className="closeTicket__form">
@@ -80,7 +81,7 @@ function CloseTicketPage() {
                     <button
                         className="closeTicket__confirm"
                         type="button"
-                        // onClick={deleteOneTicket}
+                        onClick={deleteOneTicket}
                     >
                         CONFIRMAR
                     </button>

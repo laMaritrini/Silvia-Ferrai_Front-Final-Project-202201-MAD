@@ -126,7 +126,7 @@ describe('Given actions creators ', () => {
         test('Dispatch, removeProductIntoTicket is called with successful action', async () => {
             const dispatchMock = jest.fn();
 
-            await removeProductIntoTicket(id, token)(dispatchMock);
+            await removeProductIntoTicket(id, idItem, token)(dispatchMock);
 
             expect(dispatchMock).toHaveBeenCalledWith({
                 type: actionTypesTicket.removeProductFromTicket,

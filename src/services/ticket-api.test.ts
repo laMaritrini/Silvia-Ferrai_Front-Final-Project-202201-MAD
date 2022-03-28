@@ -39,8 +39,8 @@ describe('Given the service api', () => {
     });
 
     test('When  deleteProductTicket is running, axios.delete should be called', () => {
-        api.deleteProductTicket(id, token);
-        expect(axios.delete).toHaveBeenCalled();
+        api.deleteProductTicket(id, idItem, token);
+        expect(axios.patch).toHaveBeenCalled();
     });
 
     test('When getAllTickets is running, axios.get should be called', () => {

@@ -11,7 +11,7 @@ export const createNewTicket = (ticket: TicketI) => (dispatch: AppDispatch) => {
 };
 
 export const deleteTicket =
-    (id: string, token: string) => (dispatch: AppDispatch) => {
+    (id: string | undefined, token: string) => (dispatch: AppDispatch) => {
         api.deleteTicket(id, token).then((resp) => {
             dispatch({
                 type: actionTypesTicket.deleteTicket,
@@ -32,8 +32,8 @@ export const updateProductIntoTicket =
     };
 
 export const removeProductIntoTicket =
-    (id: string, token: string) => (dispatch: AppDispatch) => {
-        api.deleteProductTicket(id, token).then((resp) => {
+    (id: string, idItem: number, token: string) => (dispatch: AppDispatch) => {
+        api.deleteProductTicket(id, idItem, token).then((resp) => {
             dispatch({
                 type: actionTypesTicket.removeProductFromTicket,
                 payload: resp.data,

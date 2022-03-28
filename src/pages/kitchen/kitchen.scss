@@ -1,0 +1,30 @@
+.tables-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.tables {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    margin: 20px;
+
+    border: 1px solid black;
+    background-color: antiquewhite;
+    &__elements {
+        display: flex;
+        padding: 5px;
+    }
+    &__title {
+        background-color: rgb(233, 197, 80);
+        padding: 20px 100px;
+    }
+}
+.title {
+    padding: 20px;
+    font-size: 3rem;
+    font-weight: bold;
+}
