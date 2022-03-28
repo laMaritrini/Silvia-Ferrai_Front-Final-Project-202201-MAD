@@ -1,6 +1,6 @@
+import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render, screen } from '../utils/test.utils';
-
+import { fireEvent, render, screen } from '../utils/test.utils.js';
 import UserForm from './user-form';
 
 describe('Given the UserForm Component', () => {
@@ -20,7 +20,7 @@ describe('Given the UserForm Component', () => {
             const inputPassword = screen.getByPlaceholderText(/Password/i);
             fireEvent.change(inputUsername, { target: { value: 'test' } });
             fireEvent.change(inputPassword, { target: { value: 'test' } });
-            fireEvent.submit(screen.getByText(/Register/));
+            fireEvent.submit(screen.getByText(/REGÍSTRATE/));
         });
     });
 });

@@ -9,10 +9,12 @@ function LoginPage() {
             <div className="container">
                 <h2 className="container__login">LOGIN</h2>
                 <LoginForm />
-                <p className="container__option"> OR</p>
+                <p className="container-reg__question">
+                    ¿No tienes una cuenta?
+                </p>
                 <Link to="/register">
                     <button className="button-register" type="button">
-                        REGISTER
+                        Regístrate
                     </button>
                 </Link>
             </div>

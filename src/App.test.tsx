@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from './utils/test.utils';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from './utils/test.utils.js';
 import { store } from './redux/store';
 import App from './App';
-import { MemoryRouter } from 'react-router-dom';
 
 test('renders learn react link', () => {
     const { getByText } = render(

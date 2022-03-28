@@ -1,0 +1,45 @@
+.home {
+    height: 100vh;
+    &__add {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba(235, 120, 70, 1);
+        width: 10vw;
+        height: 10vw;
+        align-items: center;
+        padding: 20px;
+        border-end-start-radius: 30px;
+        &--table {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+    }
+    &__icon {
+        padding-top: 30px;
+        height: 5vh;
+    }
+    &__list {
+        text-decoration: none;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        &--table-pic {
+            width: 200px;
+        }
+        &--block {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        &--table {
+            font-size: 1.5rem;
+            color: black;
+            font-weight: 700;
+        }
+    }
+}
+.home-table {
+    display: flex;
+    justify-content: flex-end;
+}

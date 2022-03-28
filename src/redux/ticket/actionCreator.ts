@@ -3,15 +3,12 @@ import { actionTypesTicket } from './actionTypes';
 import * as api from '../../services/ticket.api';
 import { TicketI } from '../../interfaces/ticket';
 
-export const createNewTicket =
-    (ticket: TicketI, token: string) => (dispatch: AppDispatch) => {
-        api.createTicket(ticket, token).then((resp) => {
-            dispatch({
-                type: actionTypesTicket.createTicket,
-                payload: resp.data,
-            });
-        });
-    };
+export const createNewTicket = (ticket: TicketI) => (dispatch: AppDispatch) => {
+    dispatch({
+        type: actionTypesTicket.createTicket,
+        payload: ticket,
+    });
+};
 
 export const deleteTicket =
     (id: string, token: string) => (dispatch: AppDispatch) => {
@@ -24,8 +21,9 @@ export const deleteTicket =
     };
 
 export const updateProductIntoTicket =
-    (id: string, token: string) => (dispatch: AppDispatch) => {
-        api.updateProductTicket(id, token).then((resp) => {
+    (id: string | undefined, idItem: number, token: string) =>
+    (dispatch: AppDispatch) => {
+        api.updateProductTicket(id, idItem, token).then((resp) => {
             dispatch({
                 type: actionTypesTicket.updateTicket,
                 payload: resp.data,
@@ -43,8 +41,8 @@ export const removeProductIntoTicket =
         });
     };
 
-export const getAllTickets = (token: string) => (dispatch: AppDispatch) => {
-    api.getAllTickets(token).then((resp) => {
+export const getAllTickets = () => (dispatch: AppDispatch) => {
+    api.getAllTickets().then((resp) => {
         dispatch({
             type: actionTypesTicket.loadAllTickets,
             payload: resp.data,
@@ -53,7 +51,7 @@ export const getAllTickets = (token: string) => (dispatch: AppDispatch) => {
 };
 
 export const getTicket =
-    (id: string, token: string) => (dispatch: AppDispatch) => {
+    (id: string | undefined, token: string) => (dispatch: AppDispatch) => {
         api.getTicket(id, token).then((resp) => {
             dispatch({
                 type: actionTypesTicket.getTicket,

@@ -26,12 +26,17 @@ export function deleteTicket(
 }
 
 export function updateProductTicket(
-    id: string,
+    id: string | undefined,
+    idItem: number,
     token: string
 ): Promise<AxiosResponse> {
-    return axios.patch(`${TICKET_API}/product/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-    });
+    return axios.patch(
+        `${TICKET_API}product/${id}`,
+        { id: idItem },
+        {
+            headers: { authorization: `Bearer ${token}` },
+        }
+    );
 }
 
 export function deleteProductTicket(
@@ -43,13 +48,14 @@ export function deleteProductTicket(
     });
 }
 
-export function getAllTickets(token: string): Promise<AxiosResponse> {
-    return axios.get(TICKET_API, {
-        headers: { authorization: `Bearer ${token}` },
-    });
+export function getAllTickets(): Promise<AxiosResponse> {
+    return axios.get(TICKET_API);
 }
 
-export function getTicket(id: string, token: string): Promise<AxiosResponse> {
+export function getTicket(
+    id: string | undefined,
+    token: string
+): Promise<AxiosResponse> {
     return axios.get(TICKET_API + id, {
         headers: { authorization: `Bearer ${token}` },
     });

@@ -67,7 +67,7 @@ function UserForm() {
                 type="submit"
                 onClick={handleSubmit}
             >
-                Register
+                REGÍSTRATE
             </button>
         </form>
     );

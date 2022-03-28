@@ -16,13 +16,6 @@ jest.mock('../../services/ticket.api', () => ({
                 test: 'test',
             },
         }),
-    createTicket: () =>
-        Promise.resolve({
-            data: {
-                _id: 'sdsdsdsd',
-                test: 'test',
-            },
-        }),
 
     getTicket: () =>
         Promise.resolve({
@@ -49,15 +42,16 @@ jest.mock('../../services/ticket.api', () => ({
             },
         }),
 }));
-let token: string = 'afdfsdfsafdaaga';
-let id: string = 'id';
+const token: string = 'afdfsdfsafdaaga';
+const id: string = 'id';
+const idItem: number = 2;
 
 describe('Given actions creators ', () => {
     describe('When getAllTickets is called', () => {
         test('Dispatch, getAllTickets is called with successful action', async () => {
             const dispatchMock = jest.fn();
 
-            await getAllTickets(token)(dispatchMock);
+            await getAllTickets()(dispatchMock);
 
             expect(dispatchMock).toHaveBeenCalledWith({
                 type: actionTypesTicket.loadAllTickets,
@@ -87,20 +81,15 @@ describe('Given actions creators ', () => {
     describe('When createNewTicket is called', () => {
         test('Dispatch, createNewTicket is called with successful action', async () => {
             const dispatchMock = jest.fn();
-
-            await createNewTicket(
-                {
-                    _id: '',
-                    items: [],
-                },
-                token
-            )(dispatchMock);
-
+            await createNewTicket({
+                _id: '',
+                items: [],
+            })(dispatchMock);
             expect(dispatchMock).toHaveBeenCalledWith({
                 type: actionTypesTicket.createTicket,
                 payload: {
-                    _id: 'sdsdsdsd',
-                    test: 'test',
+                    _id: '',
+                    items: [],
                 },
             });
         });
@@ -123,7 +112,7 @@ describe('Given actions creators ', () => {
         test('Dispatch, updateProductIntoTicket is called with successful action', async () => {
             const dispatchMock = jest.fn();
 
-            await updateProductIntoTicket(id, token)(dispatchMock);
+            await updateProductIntoTicket(id, idItem, token)(dispatchMock);
 
             expect(dispatchMock).toHaveBeenCalledWith({
                 type: actionTypesTicket.updateTicket,

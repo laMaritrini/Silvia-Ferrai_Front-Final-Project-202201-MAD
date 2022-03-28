@@ -1,15 +1,16 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { screen, render } from '../../utils/test.utils.js';
-import RegisterPage from './registerPage';
+import TicketPage from './ticketPage';
 
 describe('Given the login page component', () => {
     test('Then the login title should be rendered', () => {
         render(
             <MemoryRouter>
-                <RegisterPage />
+                <TicketPage />
             </MemoryRouter>
         );
-        expect(screen.getByText(/Sala/)).toBeInTheDocument();
+        expect(screen.getByText(/Article/i)).toBeInTheDocument();
+        expect(screen.getByText(/PIZZA/)).toBeInTheDocument();
     });
 });
