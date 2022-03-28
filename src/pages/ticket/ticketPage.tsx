@@ -1,31 +1,43 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Products from '../../components/products';
 import { RootState } from '../../redux/store';
-import { getTicket } from '../../redux/ticket/actionCreator';
+import { updateProductIntoTicket } from '../../redux/ticket/actionCreator';
 import './ticketPage.scss';
+import { TicketI } from '../../interfaces/ticket';
 
 function TicketPage() {
     const { id } = useParams();
     const user = useSelector((state: RootState) => state.user);
     const ticketInfo = useSelector((state: RootState) => state.ticket);
+    const ta: number = useSelector((state: RootState) =>
+        state.ticket.findIndex((item: TicketI) => item._id === id)
+    );
+    console.log('ID', id);
+    console.log(ticketInfo);
+
+    const [actualTicket, setActualTicket] = useState<TicketI>();
+
+    useEffect(() => {
+        setActualTicket(ticketInfo.find((item: TicketI) => item._id === id));
+    }, [ticketInfo]);
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getTicket(id, user.token));
-    }, [dispatch]);
-
+    const updateTicket = (idItem: number) =>
+        dispatch(updateProductIntoTicket(id, idItem, user.token));
     return (
         <div className="container-grid">
             <div className="block1">
-                <h3 className="ticket-title">Ticket Mesa N.</h3>
+                <h3 key="item._id" className="ticket-title">
+                    Ticket Mesa N. {ta + 1}
+                </h3>
 
-                <div className="bloque-ticket">
+                <div className="block-ticket">
                     <div className="ticket-subtitle">
                         <p className="ticket-subtitle__elements ticket-subtitle__elements--items">
                             Uds:
@@ -41,9 +53,9 @@ function TicketPage() {
                         </p>
                     </div>
                     <ul className="list">
-                        {ticketInfo &&
-                            ticketInfo.items?.length &&
-                            ticketInfo.items.map((el: any) => (
+                        {actualTicket &&
+                            actualTicket.items?.length &&
+                            actualTicket.items.map((el: any) => (
                                 <div className="ticket-subtitle__elements">
                                     <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
                                         <FontAwesomeIcon
@@ -54,6 +66,9 @@ function TicketPage() {
                                         <FontAwesomeIcon
                                             icon={faPlus}
                                             className="icon"
+                                            onClick={() =>
+                                                updateTicket(el.article.id)
+                                            }
                                         />
                                     </li>
                                     <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
@@ -81,9 +96,11 @@ function TicketPage() {
                 <Link className="link" to="/">
                     <div className="block3__list block3__list--sala">Sala</div>
                 </Link>
-                <div className="block3__list block3__list--close">
-                    Cerrar Ticket
-                </div>
+                <Link to="/closeTicket">
+                    <div className="block3__list block3__list--close">
+                        Cerrar Ticket
+                    </div>
+                </Link>
                 <div className="block3__list block3__list--invite">
                     Invitacíon
                 </div>

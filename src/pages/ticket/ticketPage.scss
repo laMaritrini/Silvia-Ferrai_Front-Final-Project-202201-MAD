@@ -106,7 +106,7 @@
 .link {
     text-decoration: none;
 }
-.bloque-ticket {
+.block-ticket {
     display: flex;
     flex-direction: column;
     padding-right: 20px;
@@ -139,6 +139,7 @@
         width: 11vw;
         height: 11vw;
         border-radius: 50%;
+        font-weight: 700;
     }
 }
 .right-block {

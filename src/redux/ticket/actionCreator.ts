@@ -21,8 +21,9 @@ export const deleteTicket =
     };
 
 export const updateProductIntoTicket =
-    (id: string, token: string) => (dispatch: AppDispatch) => {
-        api.updateProductTicket(id, token).then((resp) => {
+    (id: string | undefined, idItem: number, token: string) =>
+    (dispatch: AppDispatch) => {
+        api.updateProductTicket(id, idItem, token).then((resp) => {
             dispatch({
                 type: actionTypesTicket.updateTicket,
                 payload: resp.data,

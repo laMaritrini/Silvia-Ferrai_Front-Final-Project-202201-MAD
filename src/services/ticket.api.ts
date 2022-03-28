@@ -26,12 +26,17 @@ export function deleteTicket(
 }
 
 export function updateProductTicket(
-    id: string,
+    id: string | undefined,
+    idItem: number,
     token: string
 ): Promise<AxiosResponse> {
-    return axios.patch(`${TICKET_API}/product/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-    });
+    return axios.patch(
+        `${TICKET_API}product/${id}`,
+        { id: idItem },
+        {
+            headers: { authorization: `Bearer ${token}` },
+        }
+    );
 }
 
 export function deleteProductTicket(

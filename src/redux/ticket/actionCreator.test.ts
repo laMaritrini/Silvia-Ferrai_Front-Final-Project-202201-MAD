@@ -44,6 +44,7 @@ jest.mock('../../services/ticket.api', () => ({
 }));
 const token: string = 'afdfsdfsafdaaga';
 const id: string = 'id';
+const idItem: number = 2;
 
 describe('Given actions creators ', () => {
     describe('When getAllTickets is called', () => {
@@ -111,7 +112,7 @@ describe('Given actions creators ', () => {
         test('Dispatch, updateProductIntoTicket is called with successful action', async () => {
             const dispatchMock = jest.fn();
 
-            await updateProductIntoTicket(id, token)(dispatchMock);
+            await updateProductIntoTicket(id, idItem, token)(dispatchMock);
 
             expect(dispatchMock).toHaveBeenCalledWith({
                 type: actionTypesTicket.updateTicket,

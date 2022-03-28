@@ -8,6 +8,7 @@ describe('Given the service api', () => {
     let id: string;
     let ticket: TicketI;
     let token: string;
+    let idItem: number;
     beforeAll(() => {
         id = '65656556';
         ticket = {
@@ -33,7 +34,7 @@ describe('Given the service api', () => {
     });
 
     test('When updateProductTicket is running, axios.patch should be called', () => {
-        api.updateProductTicket(id, token);
+        api.updateProductTicket(id, idItem, token);
         expect(axios.patch).toHaveBeenCalled();
     });
 

@@ -14,7 +14,7 @@ function KitchenPage() {
 
     useEffect(() => {
         dispatch(getAllTickets());
-        dispatch(getTicket(ticket.id, user.token));
+        (ticket[0].id, user.token));
     }, [dispatch]);
 
     return (
@@ -25,21 +25,20 @@ function KitchenPage() {
                     ticket.map((item: any, index: number) => (
                         <div key={item._id}>ticket {index + 1}</div>
                     ))}
-
-                <div>
-                    {ticket.items &&
-                        ticket.items.article?.length &&
-                        ticket.items.article.map((el: any) => (
-                            <div className="ticket-subtitle__elements">
-                                <div className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                    {el.uds}
-                                </div>
-                                <div className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                    {el.article.item}
-                                </div>
+            </div>
+            <div>
+                {ticket.items &&
+                    ticket.items.article?.length &&
+                    ticket.items.article.map((el: any) => (
+                        <div className="ticket-subtitle__elements">
+                            <div className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                {el.uds}
                             </div>
-                        ))}
-                </div>
+                            <div className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                {el.article.item}
+                            </div>
+                        </div>
+                    ))}
             </div>
         </div>
     );
