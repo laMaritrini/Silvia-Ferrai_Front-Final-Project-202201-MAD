@@ -31,6 +31,7 @@ function CloseTicketPage() {
                     <div>Efectivo:</div>
                     <div>Cambio: </div>
                 </div>
+                <input type="number" name="test" id="test" />
 
                 <div className="closeTicket__keyboard">
                     <div className="closeTicket__keyboard closeTicket__keyboard--number">

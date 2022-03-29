@@ -10,18 +10,14 @@ export function ticketReducer(state: TicketI[] = [], action: AnyAction) {
         case actionTypesTicket.deleteTicket:
             return state.filter((item) => item._id !== action.payload._id);
         case actionTypesTicket.updateTicket:
-            return [
-                state.map((item) =>
-                    item._id === action.payload.id ? action.payload : item
-                ),
-            ];
+            return state.map((item) =>
+                item._id === action.payload._id ? action.payload : item
+            );
 
         case actionTypesTicket.removeProductFromTicket:
-            return [
-                state.map((item) =>
-                    item._id === action.payload.id ? action.payload : item
-                ),
-            ];
+            return state.map((item) =>
+                item._id === action.payload._id ? action.payload : item
+            );
         case actionTypesTicket.loadAllTickets:
             return [...action.payload];
         // case actionTypesTicket.getTicket:

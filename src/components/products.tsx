@@ -1,14 +1,21 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadProducts } from '../redux/products/actionCreators';
 import { RootState } from '../redux/store';
+import { updateProductIntoTicket } from '../redux/ticket/actionCreator';
 
 function Products() {
     const product = useSelector((state: RootState) => state.product);
+    const user = useSelector((state: RootState) => state.user);
     const [itemProduct, setItemProduct] = useState([]);
     const dispatch = useDispatch();
+
+    const { id } = useParams();
 
     useEffect(() => {
         dispatch(loadProducts());
@@ -19,6 +26,9 @@ function Products() {
 
         setItemProduct(filteredItem as any);
     }
+
+    const updateTicket = (idItem: number) =>
+        dispatch(updateProductIntoTicket(id as string, idItem, user.token));
 
     return (
         <>
@@ -142,7 +152,11 @@ function Products() {
                 {itemProduct.length &&
                     itemProduct.map((el: any) => (
                         <div>
-                            <li key={el.id} className="products__item">
+                            <li
+                                key={el.id}
+                                className="products__item"
+                                onClick={() => updateTicket(el.id)}
+                            >
                                 {el.item}
                             </li>
                             {/* <li>{el.image}</li> */}

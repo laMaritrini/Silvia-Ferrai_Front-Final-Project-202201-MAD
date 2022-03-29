@@ -6,7 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Products from '../../components/products';
 import { RootState } from '../../redux/store';
-import { updateProductIntoTicket } from '../../redux/ticket/actionCreator';
+import {
+    updateProductIntoTicket,
+    removeProductIntoTicket,
+} from '../../redux/ticket/actionCreator';
 import './ticketPage.scss';
 import { TicketI } from '../../interfaces/ticket';
 
@@ -14,7 +17,7 @@ function TicketPage() {
     const { id } = useParams();
     const user = useSelector((state: RootState) => state.user);
     const ticketInfo = useSelector((state: RootState) => state.ticket);
-    const ta: number = useSelector((state: RootState) =>
+    const indexTicket: number = useSelector((state: RootState) =>
         state.ticket.findIndex((item: TicketI) => item._id === id)
     );
     // console.log('ID', id);
@@ -30,11 +33,15 @@ function TicketPage() {
 
     const updateTicket = (idItem: number) =>
         dispatch(updateProductIntoTicket(id, idItem, user.token));
+
+    const deleteFromTicket = (idItem: number) =>
+        dispatch(removeProductIntoTicket(id as string, idItem, user.token));
+
     return (
         <div className="container-grid">
             <div className="block1">
                 <h3 key="item._id" className="ticket-title">
-                    Ticket Mesa N. {ta + 1}
+                    Ticket Mesa N. {indexTicket + 1}
                 </h3>
 
                 <div className="block-ticket">
@@ -61,6 +68,9 @@ function TicketPage() {
                                         <FontAwesomeIcon
                                             icon={faMinus}
                                             className="icon"
+                                            onClick={() =>
+                                                deleteFromTicket(el.article.id)
+                                            }
                                         />
                                         {el.uds}
                                         <FontAwesomeIcon
@@ -85,7 +95,15 @@ function TicketPage() {
                     </ul>
                 </div>
                 <div className="tot">
-                    <div>Tot. art</div>
+                    {/* {actualTicket &&
+                        actualTicket.items?.length &&
+                        actualTicket.items.map((el: any) =>
+                            el.uds.reduce(
+                                (prev: any, curr: any) => prev + curr,
+                                0
+                            )
+                        )} */}
+
                     <div>Tot. </div>
                 </div>
             </div>

@@ -44,13 +44,9 @@ export function deleteProductTicket(
     idItem: number,
     token: string
 ): Promise<AxiosResponse> {
-    return axios.patch(
-        `${TICKET_API}product/${id}`,
-        { id: idItem },
-        {
-            headers: { authorization: `Bearer ${token}` },
-        }
-    );
+    return axios.delete(`${TICKET_API}product/${id}/id/${idItem}`, {
+        headers: { authorization: `Bearer ${token}` },
+    });
 }
 
 export function getAllTickets(): Promise<AxiosResponse> {

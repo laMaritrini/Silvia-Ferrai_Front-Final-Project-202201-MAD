@@ -11,7 +11,7 @@ import {
     getAllTickets,
 } from '../../redux/ticket/actionCreator';
 import { RootState } from '../../redux/store';
-import Popup from '../../components/popUp';
+
 import './home.scss';
 
 import * as api from '../../services/ticket.api';
