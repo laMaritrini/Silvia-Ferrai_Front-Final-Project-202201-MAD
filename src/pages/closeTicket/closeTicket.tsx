@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTicket } from '../../redux/ticket/actionCreator';
@@ -7,54 +7,67 @@ import './closeTicket.scss';
 
 function CloseTicketPage() {
     const dispatch = useDispatch();
-    const { id } = useParams();
+    const { id, commandTotal } = useParams();
     const user = useSelector((state: RootState) => state.user);
+
+    const [cash, setCash] = useState('0');
+    const [card, setCard] = useState('0');
 
     const deleteOneTicket = () => {
         dispatch(deleteTicket(id, user.token));
     };
+
+    // const operationChange = 0;
 
     return (
         <div className="closeTicket">
             <div className="close-container">
                 <form className="closeTicket__form">
                     <label htmlFor="tot" className="closeTicket__label-tot">
-                        TOT A PAGAR:
+                        TOT A PAGAR €:
                         <input
                             className="closeTicket__label closeTicket__label--tot"
                             type="number"
-                            // value={}
+                            value={commandTotal}
                             name="tot"
                             id="tot"
                         />
                     </label>
                     <label htmlFor="cash" className="closeTicket__label">
-                        Efectivo:
+                        Efectivo €:
                         <input
                             className="closeTicket__label closeTicket__label--input"
                             type="number"
+                            value={cash}
+                            onChange={(e: SyntheticEvent) =>
+                                setCash((e.target as HTMLInputElement).value)
+                            }
                             name="cash"
                             id="cash"
                         />
                     </label>
                     <label htmlFor="card" className="closeTicket__label">
-                        Tarjeta:
+                        Tarjeta €:
                         <input
                             className="closeTicket__label closeTicket__label--input"
                             type="number"
+                            value={card}
+                            onChange={(e: SyntheticEvent) =>
+                                setCard((e.target as HTMLInputElement).value)
+                            }
                             name="card"
                             id="card"
                         />
                     </label>
                     <label htmlFor="change" className="closeTicket__label">
-                        Cambio:
-                        <input
-                            className="closeTicket__label closeTicket__label--input"
-                            type="text"
-                            // value={}
-                            name="change"
-                            id="change"
-                        />
+                        Cambio €:
+                        <p>
+                            {(
+                                Number(commandTotal) -
+                                Number(cash) -
+                                Number(card)
+                            ).toFixed(2)}
+                        </p>
                     </label>
                 </form>
             </div>
@@ -69,6 +82,10 @@ function CloseTicketPage() {
                         className="closeTicket__confirm"
                         type="button"
                         onClick={deleteOneTicket}
+                        disabled={
+                            Number(commandTotal) - Number(cash) - Number(card) >
+                            0
+                        }
                     >
                         CONFIRMAR
                     </button>

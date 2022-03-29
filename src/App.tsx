@@ -20,7 +20,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/ticket/:id" element={<TicketPage />} />
                     <Route
-                        path="/closeTicket/:id"
+                        path="/closeTicket/:id/:commandTotal"
                         element={<CloseTicketPage />}
                     />
                     <Route path="/kitchen" element={<KitchenPage />} />

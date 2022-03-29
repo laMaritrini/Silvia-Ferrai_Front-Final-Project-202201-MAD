@@ -20,8 +20,8 @@ function TicketPage() {
     const indexTicket: number = useSelector((state: RootState) =>
         state.ticket.findIndex((item: TicketI) => item._id === id)
     );
-    // console.log('ID', id);
-    // console.log(ticketInfo);
+
+    let commandTotal = 0;
 
     const [actualTicket, setActualTicket] = useState<TicketI>();
 
@@ -62,49 +62,53 @@ function TicketPage() {
                     <ul className="list">
                         {actualTicket &&
                             actualTicket.items?.length &&
-                            actualTicket.items.map((el: any) => (
-                                <div className="ticket-subtitle__elements">
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        <FontAwesomeIcon
-                                            icon={faMinus}
-                                            className="icon"
-                                            onClick={() =>
-                                                deleteFromTicket(el.article.id)
-                                            }
-                                        />
-                                        {el.uds}
-                                        <FontAwesomeIcon
-                                            icon={faPlus}
-                                            className="icon"
-                                            onClick={() =>
-                                                updateTicket(el.article.id)
-                                            }
-                                        />
-                                    </li>
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        {el.article.item}
-                                    </li>
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        {el.article.price.toFixed(2)}
-                                    </li>
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        {(el.article.price * el.uds).toFixed(2)}
-                                    </li>
-                                </div>
-                            ))}
+                            actualTicket.items.map((el: any) => {
+                                const itemsTotalAmount =
+                                    el.article.price * el.uds;
+
+                                commandTotal += +itemsTotalAmount;
+
+                                return (
+                                    <div className="ticket-subtitle__elements">
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            <FontAwesomeIcon
+                                                icon={faMinus}
+                                                className="icon"
+                                                onClick={() =>
+                                                    deleteFromTicket(
+                                                        el.article.id
+                                                    )
+                                                }
+                                            />
+                                            {el.uds}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="icon"
+                                                onClick={() =>
+                                                    updateTicket(el.article.id)
+                                                }
+                                            />
+                                        </li>
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            {el.article.item}
+                                        </li>
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            {el.article.price.toFixed(2)}
+                                        </li>
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            {(
+                                                el.article.price * el.uds
+                                            ).toFixed(2)}
+                                        </li>
+                                    </div>
+                                );
+                            })}
                     </ul>
                 </div>
                 <div className="tot">
-                    {/* {actualTicket &&
-                        actualTicket.items?.length &&
-                        actualTicket.items.map((el: any) =>
-                            el.uds.reduce(
-                                (prev: any, curr: any) => prev + curr,
-                                0
-                            )
-                        )} */}
+                    <div>Tot uds:</div>
 
-                    <div>Tot. </div>
+                    <div>Tot. {commandTotal.toFixed(2)}€</div>
                 </div>
             </div>
             <div className="block2">
@@ -114,7 +118,8 @@ function TicketPage() {
                 <Link className="link" to="/">
                     <div className="block3__list block3__list--sala">Sala</div>
                 </Link>
-                <Link to={`/closeTicket/${id}`}>
+
+                <Link to={`/closeTicket/${id}/${commandTotal.toFixed(2)}`}>
                     <div className="block3__list block3__list--close">
                         Cerrar Ticket
                     </div>
