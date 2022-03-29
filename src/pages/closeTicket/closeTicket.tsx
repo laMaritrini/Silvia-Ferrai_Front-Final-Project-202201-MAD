@@ -15,62 +15,48 @@ function CloseTicketPage() {
     };
 
     return (
-        // <div>
-        //     <input type="number" name="tot" value={} onChange={} />
-
-        //     <input type="number" name="cash" value={} onChange={} />
-        //     <input type="number" name="card" value={} onChange={} />
-        //
-        // </div>
-
         <div className="closeTicket">
             <div className="close-container">
-                <div className="closeTicket__form">
-                    <div>TOT A PAGAR:</div>
-                    <div>Tarjeta:</div>
-                    <div>Efectivo:</div>
-                    <div>Cambio: </div>
-                </div>
-                <input type="number" name="test" id="test" />
-
-                <div className="closeTicket__keyboard">
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        6
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        7
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        8
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        9
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        2
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        3
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        4
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        5
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        0
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        1
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        .
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        C
-                    </div>
-                </div>
+                <form className="closeTicket__form">
+                    <label htmlFor="tot" className="closeTicket__label-tot">
+                        TOT A PAGAR:
+                        <input
+                            className="closeTicket__label closeTicket__label--tot"
+                            type="number"
+                            // value={}
+                            name="tot"
+                            id="tot"
+                        />
+                    </label>
+                    <label htmlFor="cash" className="closeTicket__label">
+                        Efectivo:
+                        <input
+                            className="closeTicket__label closeTicket__label--input"
+                            type="number"
+                            name="cash"
+                            id="cash"
+                        />
+                    </label>
+                    <label htmlFor="card" className="closeTicket__label">
+                        Tarjeta:
+                        <input
+                            className="closeTicket__label closeTicket__label--input"
+                            type="number"
+                            name="card"
+                            id="card"
+                        />
+                    </label>
+                    <label htmlFor="change" className="closeTicket__label">
+                        Cambio:
+                        <input
+                            className="closeTicket__label closeTicket__label--input"
+                            type="text"
+                            // value={}
+                            name="change"
+                            id="change"
+                        />
+                    </label>
+                </form>
             </div>
             <div>
                 <Link to="/">

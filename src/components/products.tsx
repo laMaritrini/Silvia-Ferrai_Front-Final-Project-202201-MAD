@@ -151,15 +151,13 @@ function Products() {
             <ul className="products">
                 {itemProduct.length &&
                     itemProduct.map((el: any) => (
-                        <div>
+                        <div key={el.id}>
                             <li
-                                key={el.id}
                                 className="products__item"
                                 onClick={() => updateTicket(el.id)}
                             >
                                 {el.item}
                             </li>
-                            {/* <li>{el.image}</li> */}
                         </div>
                     ))}
             </ul>

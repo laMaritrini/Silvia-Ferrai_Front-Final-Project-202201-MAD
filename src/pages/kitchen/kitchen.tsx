@@ -15,7 +15,6 @@ function KitchenPage() {
                     ticket.map((element: any, index: number) => (
                         <div className="tables">
                             <div className="tables__title">
-                                {' '}
                                 MESA: {index + 1}
                             </div>
 

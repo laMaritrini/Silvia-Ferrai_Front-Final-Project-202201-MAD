@@ -57,6 +57,7 @@ function Home() {
                 {ticket.length &&
                     ticket.map((item: any, index: number) => (
                         <Link
+                            key={item._id}
                             className="home__list--block"
                             to={`/ticket/${item._id}`}
                         >
@@ -64,7 +65,6 @@ function Home() {
                                 className="home__list--table-pic"
                                 src="./assets/413141-PDTI1J-153.png"
                                 alt="table"
-                                key={item._id}
                             />
                             <li className="home__list home__list--table">
                                 MESA {index + 1}
