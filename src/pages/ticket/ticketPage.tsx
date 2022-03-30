@@ -22,6 +22,7 @@ function TicketPage() {
     );
 
     let commandTotal = 0;
+    let unitsTotal = 0;
 
     const [actualTicket, setActualTicket] = useState<TicketI>();
 
@@ -65,11 +66,14 @@ function TicketPage() {
                             actualTicket.items.map((el: any) => {
                                 const itemsTotalAmount =
                                     el.article.price * el.uds;
-
                                 commandTotal += +itemsTotalAmount;
+                                unitsTotal += el.uds;
 
                                 return (
-                                    <div className="ticket-subtitle__elements">
+                                    <div
+                                        key={el._id}
+                                        className="ticket-subtitle__elements"
+                                    >
                                         <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
                                             <FontAwesomeIcon
                                                 icon={faMinus}
@@ -106,7 +110,7 @@ function TicketPage() {
                     </ul>
                 </div>
                 <div className="tot">
-                    <div>Tot uds:</div>
+                    <div>Tot uds: {unitsTotal}</div>
 
                     <div>Tot. {commandTotal.toFixed(2)}€</div>
                 </div>

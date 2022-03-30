@@ -10,8 +10,8 @@ function CloseTicketPage() {
     const { id, commandTotal } = useParams();
     const user = useSelector((state: RootState) => state.user);
 
-    const [cash, setCash] = useState('0');
-    const [card, setCard] = useState('0');
+    const [cash, setCash] = useState('');
+    const [card, setCard] = useState('');
 
     const deleteOneTicket = () => {
         dispatch(deleteTicket(id, user.token));
@@ -23,10 +23,10 @@ function CloseTicketPage() {
         <div className="closeTicket">
             <div className="close-container">
                 <form className="closeTicket__form">
-                    <label htmlFor="tot" className="closeTicket__label-tot">
+                    <label htmlFor="tot" className="closeTicket__label ">
                         TOT A PAGAR €:
                         <input
-                            className="closeTicket__label closeTicket__label--tot"
+                            className="closeTicket__label closeTicket__label--tot input"
                             type="number"
                             value={commandTotal}
                             name="tot"
@@ -36,7 +36,7 @@ function CloseTicketPage() {
                     <label htmlFor="cash" className="closeTicket__label">
                         Efectivo €:
                         <input
-                            className="closeTicket__label closeTicket__label--input"
+                            className="closeTicket__label input"
                             type="number"
                             value={cash}
                             onChange={(e: SyntheticEvent) =>
@@ -49,7 +49,7 @@ function CloseTicketPage() {
                     <label htmlFor="card" className="closeTicket__label">
                         Tarjeta €:
                         <input
-                            className="closeTicket__label closeTicket__label--input"
+                            className="closeTicket__label input"
                             type="number"
                             value={card}
                             onChange={(e: SyntheticEvent) =>
@@ -59,9 +59,12 @@ function CloseTicketPage() {
                             id="card"
                         />
                     </label>
-                    <label htmlFor="change" className="closeTicket__label">
+                    <label
+                        htmlFor="change"
+                        className="closeTicket__label input"
+                    >
                         Cambio €:
-                        <p>
+                        <p className="closeTicket__change">
                             {(
                                 Number(commandTotal) -
                                 Number(cash) -
