@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 
 import { userReducer } from '../redux/user/reducer';
 import { ticketReducer } from '../redux/ticket/reducer';
+import { productsReducer } from '../redux/products/reducer';
 
 function render(
     ui,
@@ -18,6 +19,7 @@ function render(
             reducer: {
                 ticket: ticketReducer,
                 user: userReducer,
+                product: productsReducer,
             },
             preloadedState,
         }),

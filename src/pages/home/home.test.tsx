@@ -12,8 +12,6 @@ jest.mock('../../services/ticket.api', () => ({
 
 describe('Given home ', () => {
     describe('When createTicket is called', () => {
-        test('Dispatch, createTicket is called with successful action', async () => {
-            const dispatchMock = jest.fn();
-        });
+        test('Dispatch, createTicket is called with successful action', async () => {});
     });
 });

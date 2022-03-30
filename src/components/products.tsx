@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadProducts } from '../redux/products/actionCreators';
 import { RootState } from '../redux/store';
 import { updateProductIntoTicket } from '../redux/ticket/actionCreator';
+import { ArticleI } from '../interfaces/ticket';
 
 function Products() {
     const product = useSelector((state: RootState) => state.product);
@@ -21,8 +22,10 @@ function Products() {
         dispatch(loadProducts());
     }, [dispatch]);
 
-    function filterProduct(category: any) {
-        const filteredItem = product.filter((el: any) => el.type === category);
+    function filterProduct(category: string) {
+        const filteredItem = product.filter(
+            (el: ArticleI) => el.type === category
+        );
 
         setItemProduct(filteredItem as any);
     }
@@ -150,7 +153,7 @@ function Products() {
 
             <ul className="products">
                 {itemProduct.length &&
-                    itemProduct.map((el: any) => (
+                    itemProduct.map((el: ArticleI) => (
                         <div key={el.id}>
                             <li
                                 className="products__item"

@@ -17,8 +17,6 @@ function CloseTicketPage() {
         dispatch(deleteTicket(id, user.token));
     };
 
-    // const operationChange = 0;
-
     return (
         <div className="closeTicket">
             <div className="close-container">
@@ -31,6 +29,7 @@ function CloseTicketPage() {
                             value={commandTotal}
                             name="tot"
                             id="tot"
+                            readOnly
                         />
                     </label>
                     <label htmlFor="cash" className="closeTicket__label">

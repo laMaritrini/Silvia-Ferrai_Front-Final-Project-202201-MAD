@@ -20,8 +20,7 @@ export function ticketReducer(state: TicketI[] = [], action: AnyAction) {
             );
         case actionTypesTicket.loadAllTickets:
             return [...action.payload];
-        // case actionTypesTicket.getTicket:
-        //     return action.payload;
+
         default:
             return state;
     }

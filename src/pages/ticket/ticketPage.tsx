@@ -11,7 +11,7 @@ import {
     removeProductIntoTicket,
 } from '../../redux/ticket/actionCreator';
 import './ticketPage.scss';
-import { TicketI } from '../../interfaces/ticket';
+import { ItemI, TicketI } from '../../interfaces/ticket';
 
 function TicketPage() {
     const { id } = useParams();
@@ -41,7 +41,7 @@ function TicketPage() {
     return (
         <div className="container-grid">
             <div className="block1">
-                <h3 key="item._id" className="ticket-title">
+                <h3 className="ticket-title">
                     Ticket Mesa N. {indexTicket + 1}
                 </h3>
 
@@ -63,7 +63,7 @@ function TicketPage() {
                     <ul className="list">
                         {actualTicket &&
                             actualTicket.items?.length &&
-                            actualTicket.items.map((el: any) => {
+                            actualTicket.items.map((el: ItemI) => {
                                 const itemsTotalAmount =
                                     el.article.price * el.uds;
                                 commandTotal += +itemsTotalAmount;
@@ -71,7 +71,7 @@ function TicketPage() {
 
                                 return (
                                     <div
-                                        key={el._id}
+                                        key={el.id}
                                         className="ticket-subtitle__elements"
                                     >
                                         <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
@@ -83,6 +83,7 @@ function TicketPage() {
                                                         el.article.id
                                                     )
                                                 }
+                                                data-testid="test-up"
                                             />
                                             {el.uds}
                                             <FontAwesomeIcon

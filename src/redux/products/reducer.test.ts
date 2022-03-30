@@ -2,7 +2,7 @@ import { ArticleI } from '../../interfaces/ticket';
 import { productsReducer } from './reducer';
 import { actionTypesProduct } from './actionTypes';
 
-let initialState: ArticleI[] = [];
+const initialState: ArticleI[] = [];
 
 describe('Given the productsReducer', () => {
     test('userReducer create Ticket', () => {

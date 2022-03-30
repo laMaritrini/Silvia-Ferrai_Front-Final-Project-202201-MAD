@@ -15,6 +15,7 @@ import { RootState } from '../../redux/store';
 import './home.scss';
 
 import * as api from '../../services/ticket.api';
+import { TicketI } from '../../interfaces/ticket';
 
 function Home() {
     const user = useSelector((state: RootState) => state.user);
@@ -55,7 +56,7 @@ function Home() {
             </div>
             <ul className="home__list">
                 {ticket.length &&
-                    ticket.map((item: any, index: number) => (
+                    ticket.map((item: TicketI, index: number) => (
                         <Link
                             key={item._id}
                             className="home__list--block"
