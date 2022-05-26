@@ -17,7 +17,7 @@ export function createTicket(
 }
 
 export function deleteTicket(
-    id: string,
+    id: string | undefined,
     token: string
 ): Promise<AxiosResponse> {
     return axios.delete(TICKET_API + id, {
@@ -41,9 +41,10 @@ export function updateProductTicket(
 
 export function deleteProductTicket(
     id: string,
+    idItem: number,
     token: string
 ): Promise<AxiosResponse> {
-    return axios.delete(`${TICKET_API}/product/${id}`, {
+    return axios.delete(`${TICKET_API}product/${id}/id/${idItem}`, {
         headers: { authorization: `Bearer ${token}` },
     });
 }

@@ -3,8 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { screen, render } from '../../utils/test.utils.js';
 import RegisterPage from './registerPage';
 
-describe('Given the login page component', () => {
-    test('Then the login title should be rendered', () => {
+describe('Given the user page component', () => {
+    test('Then the user title should be rendered', () => {
         render(
             <MemoryRouter>
                 <RegisterPage />

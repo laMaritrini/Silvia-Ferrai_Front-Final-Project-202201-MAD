@@ -11,10 +11,11 @@ import {
     getAllTickets,
 } from '../../redux/ticket/actionCreator';
 import { RootState } from '../../redux/store';
-import Popup from '../../components/popUp';
+
 import './home.scss';
 
 import * as api from '../../services/ticket.api';
+import { TicketI } from '../../interfaces/ticket';
 
 function Home() {
     const user = useSelector((state: RootState) => state.user);
@@ -55,8 +56,9 @@ function Home() {
             </div>
             <ul className="home__list">
                 {ticket.length &&
-                    ticket.map((item: any, index: number) => (
+                    ticket.map((item: TicketI, index: number) => (
                         <Link
+                            key={item._id}
                             className="home__list--block"
                             to={`/ticket/${item._id}`}
                         >
@@ -64,7 +66,6 @@ function Home() {
                                 className="home__list--table-pic"
                                 src="./assets/413141-PDTI1J-153.png"
                                 alt="table"
-                                key={item._id}
                             />
                             <li className="home__list home__list--table">
                                 MESA {index + 1}

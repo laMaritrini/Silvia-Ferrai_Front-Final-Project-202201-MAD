@@ -55,7 +55,7 @@
     display: flex;
     justify-content: space-between;
     width: 45vw;
-
+    font-size: 1.5rem;
     padding: 27px 50px;
     background-color: rgba(239, 184, 102, 1);
     padding-bottom: 50px;
@@ -63,22 +63,22 @@
 }
 .container-grid {
     display: flex;
-    height: 100vh;
+    height: 89vh;
 }
 .block1 {
     width: 45%;
-    height: 100vh;
+    height: 89vh;
 }
 .block2 {
     background-color: rgb(29, 28, 28);
     width: 45%;
-    height: 100vh;
+    height: 89vh;
 }
 .block3 {
     background-color: rgb(29, 28, 28);
     border: 1px solid rgb(19, 18, 18);
     width: 10%;
-    height: 100vh;
+    height: 89vh;
     display: flex;
     flex-direction: column;
     &__list {
@@ -110,6 +110,7 @@
     display: flex;
     flex-direction: column;
     padding-right: 20px;
+    height: 68vh;
 }
 .list {
     height: 75vh;

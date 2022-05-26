@@ -11,7 +11,7 @@ export const actionTypesTicket: ActionTypes = {
     createTicket: '@ticket/create',
     deleteTicket: '@ticket/delete',
     updateTicket: '@ticket/update',
-    removeProductFromTicket: '@ticket/remove',
+    removeProductFromTicket: '@ticket/update-remove',
     getTicket: '@ticket/load',
     loadAllTickets: '@ticket/loadAll',
 };

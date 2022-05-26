@@ -6,19 +6,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Products from '../../components/products';
 import { RootState } from '../../redux/store';
-import { updateProductIntoTicket } from '../../redux/ticket/actionCreator';
+import {
+    updateProductIntoTicket,
+    removeProductIntoTicket,
+} from '../../redux/ticket/actionCreator';
 import './ticketPage.scss';
-import { TicketI } from '../../interfaces/ticket';
+import { ItemI, TicketI } from '../../interfaces/ticket';
 
 function TicketPage() {
     const { id } = useParams();
     const user = useSelector((state: RootState) => state.user);
     const ticketInfo = useSelector((state: RootState) => state.ticket);
-    const ta: number = useSelector((state: RootState) =>
+    const indexTicket: number = useSelector((state: RootState) =>
         state.ticket.findIndex((item: TicketI) => item._id === id)
     );
-    console.log('ID', id);
-    console.log(ticketInfo);
+
+    let commandTotal = 0;
+    let unitsTotal = 0;
 
     const [actualTicket, setActualTicket] = useState<TicketI>();
 
@@ -30,11 +34,15 @@ function TicketPage() {
 
     const updateTicket = (idItem: number) =>
         dispatch(updateProductIntoTicket(id, idItem, user.token));
+
+    const deleteFromTicket = (idItem: number) =>
+        dispatch(removeProductIntoTicket(id as string, idItem, user.token));
+
     return (
         <div className="container-grid">
             <div className="block1">
-                <h3 key="item._id" className="ticket-title">
-                    Ticket Mesa N. {ta + 1}
+                <h3 className="ticket-title">
+                    Ticket Mesa N. {indexTicket + 1}
                 </h3>
 
                 <div className="block-ticket">
@@ -55,38 +63,57 @@ function TicketPage() {
                     <ul className="list">
                         {actualTicket &&
                             actualTicket.items?.length &&
-                            actualTicket.items.map((el: any) => (
-                                <div className="ticket-subtitle__elements">
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        <FontAwesomeIcon
-                                            icon={faMinus}
-                                            className="icon"
-                                        />
-                                        {el.uds}
-                                        <FontAwesomeIcon
-                                            icon={faPlus}
-                                            className="icon"
-                                            onClick={() =>
-                                                updateTicket(el.article.id)
-                                            }
-                                        />
-                                    </li>
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        {el.article.item}
-                                    </li>
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        {el.article.price.toFixed(2)}
-                                    </li>
-                                    <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
-                                        {(el.article.price * el.uds).toFixed(2)}
-                                    </li>
-                                </div>
-                            ))}
+                            actualTicket.items.map((el: ItemI) => {
+                                const itemsTotalAmount =
+                                    el.article.price * el.uds;
+                                commandTotal += +itemsTotalAmount;
+                                unitsTotal += el.uds;
+
+                                return (
+                                    <div
+                                        key={el.id}
+                                        className="ticket-subtitle__elements"
+                                    >
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            <FontAwesomeIcon
+                                                icon={faMinus}
+                                                className="icon"
+                                                onClick={() =>
+                                                    deleteFromTicket(
+                                                        el.article.id
+                                                    )
+                                                }
+                                                data-testid="test-up"
+                                            />
+                                            {el.uds}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="icon"
+                                                onClick={() =>
+                                                    updateTicket(el.article.id)
+                                                }
+                                            />
+                                        </li>
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            {el.article.item}
+                                        </li>
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            {el.article.price.toFixed(2)}
+                                        </li>
+                                        <li className="ticket-subtitle__elements ticket-subtitle__elements--items">
+                                            {(
+                                                el.article.price * el.uds
+                                            ).toFixed(2)}
+                                        </li>
+                                    </div>
+                                );
+                            })}
                     </ul>
                 </div>
                 <div className="tot">
-                    <div>Tot. art</div>
-                    <div>Tot. </div>
+                    <div>Tot uds: {unitsTotal}</div>
+
+                    <div>Tot. {commandTotal.toFixed(2)}€</div>
                 </div>
             </div>
             <div className="block2">
@@ -96,7 +123,8 @@ function TicketPage() {
                 <Link className="link" to="/">
                     <div className="block3__list block3__list--sala">Sala</div>
                 </Link>
-                <Link to="/closeTicket">
+
+                <Link to={`/closeTicket/${id}/${commandTotal.toFixed(2)}`}>
                     <div className="block3__list block3__list--close">
                         Cerrar Ticket
                     </div>

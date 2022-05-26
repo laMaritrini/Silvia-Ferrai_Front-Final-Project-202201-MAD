@@ -39,7 +39,7 @@ describe('Given the service api', () => {
     });
 
     test('When  deleteProductTicket is running, axios.delete should be called', () => {
-        api.deleteProductTicket(id, token);
+        api.deleteProductTicket(id, idItem, token);
         expect(axios.delete).toHaveBeenCalled();
     });
 

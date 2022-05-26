@@ -1,74 +1,77 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { deleteTicket } from '../../redux/ticket/actionCreator';
-// import { RootState } from '../../redux/store';
+import React, { SyntheticEvent, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTicket } from '../../redux/ticket/actionCreator';
+import { RootState } from '../../redux/store';
 import './closeTicket.scss';
 
-// const dispatch = useDispatch();
-
 function CloseTicketPage() {
-    // const user = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const { id, commandTotal } = useParams();
+    const user = useSelector((state: RootState) => state.user);
 
-    // const deleteOneTicket = (id: string) => {
-    //     dispatch(deleteTicket(id, user.token));
-    // };
+    const [cash, setCash] = useState('');
+    const [card, setCard] = useState('');
+
+    const deleteOneTicket = () => {
+        dispatch(deleteTicket(id, user.token));
+    };
 
     return (
-        // <div>
-        //     <input type="number" name="tot" value={} onChange={} />
-
-        //     <input type="number" name="cash" value={} onChange={} />
-        //     <input type="number" name="card" value={} onChange={} />
-        //
-        // </div>
         <div className="closeTicket">
             <div className="close-container">
-                <div className="closeTicket__form">
-                    <div>TOT A PAGAR:</div>
-                    <div>Tarjeta:</div>
-                    <div>Efectivo:</div>
-                    <div>Cambio: </div>
-                </div>
-
-                <div className="closeTicket__keyboard">
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        6
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        7
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        8
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        9
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        2
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        3
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        4
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        5
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        0
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        1
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        .
-                    </div>
-                    <div className="closeTicket__keyboard closeTicket__keyboard--number">
-                        C
-                    </div>
-                </div>
+                <form className="closeTicket__form">
+                    <label htmlFor="tot" className="closeTicket__label ">
+                        TOT A PAGAR €:
+                        <input
+                            className="closeTicket__label closeTicket__label--tot input"
+                            type="number"
+                            value={commandTotal}
+                            name="tot"
+                            id="tot"
+                            readOnly
+                        />
+                    </label>
+                    <label htmlFor="cash" className="closeTicket__label">
+                        Efectivo €:
+                        <input
+                            className="closeTicket__label input"
+                            type="number"
+                            value={cash}
+                            onChange={(e: SyntheticEvent) =>
+                                setCash((e.target as HTMLInputElement).value)
+                            }
+                            name="cash"
+                            id="cash"
+                        />
+                    </label>
+                    <label htmlFor="card" className="closeTicket__label">
+                        Tarjeta €:
+                        <input
+                            className="closeTicket__label input"
+                            type="number"
+                            value={card}
+                            onChange={(e: SyntheticEvent) =>
+                                setCard((e.target as HTMLInputElement).value)
+                            }
+                            name="card"
+                            id="card"
+                        />
+                    </label>
+                    <label
+                        htmlFor="change"
+                        className="closeTicket__label input"
+                    >
+                        Cambio €:
+                        <p className="closeTicket__change">
+                            {(
+                                Number(commandTotal) -
+                                Number(cash) -
+                                Number(card)
+                            ).toFixed(2)}
+                        </p>
+                    </label>
+                </form>
             </div>
             <div>
                 <Link to="/">
@@ -80,7 +83,11 @@ function CloseTicketPage() {
                     <button
                         className="closeTicket__confirm"
                         type="button"
-                        // onClick={deleteOneTicket}
+                        onClick={deleteOneTicket}
+                        disabled={
+                            Number(commandTotal) - Number(cash) - Number(card) >
+                            0
+                        }
                     >
                         CONFIRMAR
                     </button>

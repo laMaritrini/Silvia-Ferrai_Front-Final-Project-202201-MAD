@@ -1,24 +1,37 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadProducts } from '../redux/products/actionCreators';
 import { RootState } from '../redux/store';
+import { updateProductIntoTicket } from '../redux/ticket/actionCreator';
+import { ArticleI } from '../interfaces/ticket';
 
 function Products() {
     const product = useSelector((state: RootState) => state.product);
+    const user = useSelector((state: RootState) => state.user);
     const [itemProduct, setItemProduct] = useState([]);
     const dispatch = useDispatch();
+
+    const { id } = useParams();
 
     useEffect(() => {
         dispatch(loadProducts());
     }, [dispatch]);
 
-    function filterProduct(category: any) {
-        const filteredItem = product.filter((el: any) => el.type === category);
+    function filterProduct(category: string) {
+        const filteredItem = product.filter(
+            (el: ArticleI) => el.type === category
+        );
 
         setItemProduct(filteredItem as any);
     }
+
+    const updateTicket = (idItem: number) =>
+        dispatch(updateProductIntoTicket(id as string, idItem, user.token));
 
     return (
         <>
@@ -140,12 +153,14 @@ function Products() {
 
             <ul className="products">
                 {itemProduct.length &&
-                    itemProduct.map((el: any) => (
-                        <div>
-                            <li key={el.id} className="products__item">
+                    itemProduct.map((el: ArticleI) => (
+                        <div key={el.id}>
+                            <li
+                                className="products__item"
+                                onClick={() => updateTicket(el.id)}
+                            >
                                 {el.item}
                             </li>
-                            {/* <li>{el.image}</li> */}
                         </div>
                     ))}
             </ul>
